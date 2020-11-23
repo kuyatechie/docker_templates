@@ -1,0 +1,36 @@
+## File Created: 1.1.2021
+FROM scratch
+
+ARG TITLE="alpine:3.10"
+ARG DESCRIPTION="Custom alpine:3.10 base docker image"
+ARG MAINTAINER="Arvin Cudanin"
+ARG MAINTAINER_EMAIL="arvin.cudanin@gmail.com"
+ARG DOCUMENTATION="https://github.com/kuyatechie/docker_templates/blob/main/README.md"
+ARG SOURCE="1"
+ARG LICENSES="https://opensource.org/osd"
+
+## parameters for builds
+ARG BUILD_DATE="dd.mm.yyyy"
+ARG VCS_REF="1"
+ARG BUILD_VERSION="1"
+
+## input files
+ARG TARBALL="alpine-minirootfs-3.10.2-x86_64.tar.gz"
+
+## labels
+LABEL org.opencontainers.image.os.author $MAINTAINER
+LABEL org.opencontainers.image.os.maintainer $MAINTAINER_EMAIL
+LABEL org.opencontainers.image.os.created $BUILD_DATE
+LABEL org.opencontainers.image.os.source $SOURCE
+LABEL org.opencontainers.image.os.version $BUILD_VERSION
+LABEL org.opencontainers.image.os.revision $VCS_REF
+LABEL org.opencontainers.image.os.title $TITLE
+LABEL org.opencontainers.image.os.description $DESCRIPTION
+LABEL org.opencontainers.image.os.documentation $DOCUMENTATION
+LABEL org.opencontainers.image.os.licenses $LICENSES
+
+##################################################################################################
+
+#ADD alpine-minirootfs-3.10.2-x86_64.tar.gz /
+ADD $TARBALL /
+CMD ["/bin/sh"]
